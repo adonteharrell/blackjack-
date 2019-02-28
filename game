@@ -1,0 +1,67 @@
+import random
+import time
+
+
+def player1():
+    name = input("What is your name?: ")
+    card1 = random.randint(1, 11)
+    card2 = random.randint(1, 11)
+    time.sleep(1)
+    print(name +"'s first card is " + str(card1))
+    time.sleep(1)
+    print(name +"'s second card is " + str(card2))
+    hand = int(card1) + int(card2)
+    while int(hand) != 21 or int(hand) < 21:
+        if int(hand) > 21:
+            print("You have " + str(hand) + ". You've busted!")
+            break
+        elif int(hand) == 21:
+            print("You have 21!")
+            break
+        option = input("Your hand is currently " + str(hand) + ", would you like to hit or stay?: ")
+        if option == "hit":
+            time.sleep(1)
+            card3 = random.randint(1, 11)
+            print("You drew " + str(card3))
+            hand = int(hand) + int(card3)
+        elif option == "stay":
+            print("You stay with " + str(hand))
+            break
+
+# COMPUTER
+
+    print("Dealing for computer...")
+    time.sleep(1)
+    ccard1 = random.randint(1, 11)
+    ccard2 = random.randint(1, 11)
+    print("Computer gets dealt card 1")
+    time.sleep(1)
+    print("Computer gets dealt card 2" )
+    time.sleep(1)
+    chand = int(ccard1) + int(ccard2)
+    if chand == 21:
+        print("The computer has 21!")
+        quit()
+    print("The computer's hand is " + str(chand))
+    time.sleep(1)
+    print("It's thinking of a move...")
+    time.sleep(3)
+    while int(chand) != 21 or int(chand) >= 18:
+        time.sleep(1)
+        ccard3 = random.randint(1, 11)
+        chand = int(chand) + int(ccard3)
+        print("The computer drew " + str(ccard3))
+        if int(chand) == 21:
+            print("I have 21!")
+            quit()
+        elif int(chand) > 21:
+            print("My hand is " + str(chand) + ", I busted!")
+            quit()
+        elif int(chand) > 18:
+            print("It's thinking of a move...")
+            time.sleep(1)
+            print("My hand is now " + str(chand) + ", I choose to stay.")
+            quit()
+
+
+player1()
